@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#
+# Authselect Autodiscovery
+# ========================
+#
+# This script autogenerates the authselect config.
+
+set -e
+umask 0007
+
+
+#
+# Handle the cleanup
+# ------------------
+cleanup_before_exit () {
+  if [ -d "${tmpdir}" ]; then
+    rm -rf "${tmpdir}"
+  fi
+}
+# be in a temporay workspace (this works on linux and macosx)
+tmpdir=`mktemp -d 2>/dev/null || mktemp -d -t 'tmpdir'`
+# trap catches the exit signal and runs the specified function
+trap cleanup_before_exit EXIT
+# be in our directory
+cd "${tmpdir}"
+
+
+#
+# Handle scripts
+# --------------
+#
+
+find "$0.d" -type f -executable | sort | \
+while read x; do
+  "$x" "${1}" < /dev/null || touch error;
+done
+
+

@@ -1,0 +1,18 @@
+# systemd service for managing all authselect autoconfiguration.
+
+[Unit]
+Description=Authselect Configuration Autodiscovery
+#Requires=snmpd.service
+#PartOf=snmpd.service
+#ReloadPropagatedFrom=snmpd.service
+Before=nss-user-lookup.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /usr/libexec/device-authselect-autodiscovery
+ExecReload=/bin/bash /usr/libexec/device-authselect-autodiscovery
+RemainAfterExit=on
+
+[Install]
+WantedBy=multi-user.target
+

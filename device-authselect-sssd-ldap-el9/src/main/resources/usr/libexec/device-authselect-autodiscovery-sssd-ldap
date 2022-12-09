@@ -1,0 +1,129 @@
+#!/bin/bash
+
+#
+# Authselect Autodiscovery - SSSD LDAP
+# ====================================
+#
+# This script autogenerates the sssd LDAP extension.
+
+set -e
+umask 0007
+
+
+#
+# Select the sssd profile
+# -----------------------
+#
+# If the profile is sssd, set that profile.
+
+if [ -L "/etc/device/system/auth/profile" ]; then
+
+  profile=$(basename $(realpath "/etc/device/system/auth/profile"))
+
+  if [ "${profile}" != "sssd" ]; then
+
+    # skip if not sssd
+    exit 0
+
+  fi
+
+else
+
+  # skip if nothing
+  exit 0
+
+fi
+
+
+#
+# Handle LDAP
+# -----------
+#
+
+sssd_domains=""
+
+#
+# Walk through each entry under replication, enable or disable as needed.
+#
+find /etc/device/system/auth/sssd/ldap/ -mindepth 1 -maxdepth 1 -type l | \
+while read line; do
+
+  if [ ! -L "$line/suffix.d" ]; then
+    continue;
+  elif [ ! -e "$line/suffix.d/name.txt" ]; then
+    continue;
+  elif [ ! -e "$line/suffix.d/suffix.txt" ]; then
+    continue;
+  elif [ ! -e "$line/suffix.d/userroot.txt" ]; then
+    continue;
+  elif [ ! -L "$line/suffix.d/instance.d" ]; then
+    continue;
+  elif [ ! -e "$line/suffix.d/instance.d/name.txt" ]; then
+    continue;
+  fi
+  instance="$(head -n 1 $line/suffix.d/instance.d/name.txt)"
+  domain="$(head -n 1 $line/suffix.d/name.txt)"
+  suffix="$(head -n 1 $line/suffix.d/suffix.txt)"
+  userroot="$(head -n 1 $line/suffix.d/userroot.txt)"
+
+
+  # only local ldap for now
+  uris=" ldapi://%2frun%2fslapd-${instance}.socket"
+  sasl_mech=EXTERNAL
+  domains+=" ${domain}"
+
+  # handle sudo
+  if [ -e "$line/sudo-search-base.txt" ]; then
+    ldap_sudo_search_base=$(head -n 1 "$line/sudo-search-base.txt")
+    logger -t "${0}" "Notice: Setting LDAP sudo search base to '${ldap_sudo_search_base}'..."
+    ldap_sudo_search_base="ldap_sudo_search_base = ${ldap_sudo_search_base}"
+    sudo_provider="sudo_provider = ldap"
+  else
+    ldap_sudo_search_base="#ldap_sudo_search_base = ou=SUDOers,\${base_dn}"
+    sudo_provider="#sudo_provider = ldap"
+  fi
+
+
+  cat >> sssd-domain.conf <<- EOF
+[domain/${domain}]
+id_provider = ldap
+autofs_provider = ldap
+auth_provider = ldap
+chpass_provider = ldap
+${sudo_provider}
+#access_provider = ldap
+
+# base DN set from the file $line/suffix.d/suffix.txt
+ldap_uri =${uris}
+ldap_search_base = ${suffix}
+ldap_sasl_mech = ${sasl_mech}
+ldap_user_ssh_public_key = nsSshPublicKey
+${ldap_tls_cacert}
+${ldap_tls_cert}
+${ldap_tls_key}
+${ldap_sudo_search_base}
+
+ldap_autofs_map_object_class = automountMap
+ldap_autofs_map_name = ou
+ldap_autofs_entry_object_class = automount
+ldap_autofs_entry_key = cn
+ldap_autofs_entry_value = automountInformation
+
+cache_credentials = True
+
+EOF
+
+  if [ -f sssd-domains.conf ]; then
+    cat >> sssd-domains.conf <<- EOF
+, ${domain}
+EOF
+  else
+    cat >> sssd-domains.conf <<- EOF
+${domain}
+EOF
+  fi
+
+  logger -t "${0}" "Notice: Added sssd domain '${domain}'."
+
+done
+

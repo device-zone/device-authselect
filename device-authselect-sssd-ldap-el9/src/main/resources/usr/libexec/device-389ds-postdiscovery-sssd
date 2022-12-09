@@ -1,0 +1,71 @@
+#!/bin/bash
+
+#
+# 389 Directory Server Postdiscovery - sssd user
+# ==============================================
+#
+# This script adds sssd user to instances.
+
+set -e
+
+instance="${1}"
+
+uris="ldapi://%2frun%2fslapd-${instance}.socket"
+
+
+#
+# Autogenerate the sssd user
+# ---------------------------
+#
+# If the LDAP server is local, we need to create the sssd user in
+# LDAP so autobind works.
+
+logger -t "${0}" "Notice: Adding sssd user on instance '${instance}'..."
+
+dsidm -b "cn=config" ${uris} organizationalunit create --ou people >/dev/null || /bin/true
+
+dsidm -b "cn=config" ${uris} user create --uid sssd --cn sssd --displayName "SSS Server" --uidNumber `id -u sssd` --gidNumber `id -g sssd` --homeDirectory "`echo ~sssd`" >/dev/null || /bin/true
+
+aci='(targetattr = "*")(version 3.0;acl "SSS Daemon";allow (read,search,compare) (userdn = "ldap:///uid=sssd,ou=people,cn=config");)'
+
+logger -t "${0}" "Notice: attempting to add sssd aci on instance '${instance}'..."
+logger -t "${0}" "Notice: sssd aci: ${aci}"
+
+find /etc/device/services/ldap-server/suffix/ -mindepth 1 -maxdepth 1 -type l | \
+while read line; do
+
+  target=$(readlink -f "$line")
+
+  if test ! -f "$line/suffix.txt"; then
+    continue;
+  fi
+  suffix="$(head $line/suffix.txt)"
+
+  if [ ! -e "$line/instance.d/name.txt" ]; then
+    continue;
+  fi
+  instance="$(head $line/instance.d/name.txt)"
+
+  if [ "${instance}" != "${1}" ]; then
+    continue;
+  fi
+
+  if [[ -z $(ldapsearch -H ${uris} -Y EXTERNAL -b "${suffix}" -o ldif-wrap=no -s base "(aci=*ldap:///uid=sssd,ou=people,cn=config*)" aci | grep "^dn:") ]]; then
+
+    ldapmodify -H ${uris} -Y EXTERNAL -c <<- EOF || true
+dn: ${suffix}
+changetype: modify
+delete: aci
+aci: ${aci}
+-
+add: aci
+aci: ${aci}
+
+EOF
+
+  fi
+
+done
+
+logger -t "${0}" "Notice: Added sssd user to local LDAP instance '${instance}'."
+
