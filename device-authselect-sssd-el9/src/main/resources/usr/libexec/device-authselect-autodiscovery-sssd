@@ -137,6 +137,12 @@ homedir_substring = /home
 [sudo]
 
 EOF
+else
+  cat >> sssd.conf <<- EOF
+[sssd]
+services = nss, pam, ssh, sudo, autofs
+domains = LOCAL
+EOF
 fi
 
 
