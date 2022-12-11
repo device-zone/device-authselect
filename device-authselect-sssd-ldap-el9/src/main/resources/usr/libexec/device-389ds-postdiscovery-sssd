@@ -31,7 +31,7 @@ aci='(targetattr = "*")(version 3.0;acl "SSS Daemon";allow (read,search,compare)
 logger -t "${0}" "Notice: attempting to add sssd aci on instance '${instance}'..."
 logger -t "${0}" "Notice: sssd aci: ${aci}"
 
-find /etc/device/services/ldap-server/suffix/ -mindepth 1 -maxdepth 1 -type l | \
+find /etc/device/services/ldap/suffix/ -mindepth 1 -maxdepth 1 -type l | \
 while read line; do
 
   target=$(readlink -f "$line")

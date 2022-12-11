@@ -5,14 +5,14 @@ umask 0002
 
 if [ "$1" == "--" ]; then
 
-  /usr/libexec/device-set --remove suffix --relation-base /etc/device/services/ldap-server/suffix --relation-name name --relation-suffix .txt --relation suffix "$@"
+  /usr/libexec/device-set --remove suffix --relation-base /etc/device/services/ldap/suffix --relation-name name --relation-suffix .txt --relation suffix "$@"
 
   /usr/bin/sudo /usr/bin/systemctl try-reload-or-restart authselect-autodiscovery.service
   /usr/bin/sudo /usr/bin/systemctl try-reload-or-restart sssd.service
 
 elif [ "$1" == "-c" ]; then
 
-  /usr/libexec/device-set --remove suffix --relation-base /etc/device/services/ldap-server/suffix --relation-name name --relation-suffix .txt --relation suffix "$@"
+  /usr/libexec/device-set --remove suffix --relation-base /etc/device/services/ldap/suffix --relation-name name --relation-suffix .txt --relation suffix "$@"
 
 fi
 
