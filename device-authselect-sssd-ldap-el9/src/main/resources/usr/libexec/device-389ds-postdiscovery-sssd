@@ -50,13 +50,25 @@ while read line; do
     continue;
   fi
 
-  if [[ -z $(ldapsearch -H ${uris} -Y EXTERNAL -b "${suffix}" -o ldif-wrap=no -s base "(aci=*ldap:///uid=sssd,ou=people,cn=config*)" aci | grep "^dn:") ]]; then
+  existing=$(ldapsearch -H ${uris} -Y EXTERNAL -b "${suffix}" -o ldif-wrap=no -s base "(aci=*)" aci | grep "ldap:///uid=sssd,ou=people,cn=config" || /bin/true)
+
+  if [ -z "${existing}" ]; then
+
+    ldapmodify -H ${uris} -Y EXTERNAL -c <<- EOF || true
+dn: ${suffix}
+changetype: modify
+add: aci
+aci: ${aci}
+
+EOF
+
+  else
 
     ldapmodify -H ${uris} -Y EXTERNAL -c <<- EOF || true
 dn: ${suffix}
 changetype: modify
 delete: aci
-aci: ${aci}
+${existing}
 -
 add: aci
 aci: ${aci}
