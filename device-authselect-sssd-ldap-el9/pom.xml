@@ -4,7 +4,7 @@
   <parent>
     <artifactId>device-authselect</artifactId>
     <groupId>zone.device.platform</groupId>
-    <version>0.9.2</version>
+    <version>0.9.3-SNAPSHOT</version>
   </parent>
 
   <properties>
@@ -18,7 +18,7 @@
 
   <artifactId>device-authselect-sssd-ldap</artifactId>
   <groupId>zone.device.platform.el9</groupId>
-  <version>0.9.2</version>
+  <version>0.9.3-SNAPSHOT</version>
   <packaging>rpm</packaging>
   <name>device authselect sssd ldap extension for el9</name>
   <description>Packaging for the authselect sssd ldap extension for ${release.distribution}</description>
