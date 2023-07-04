@@ -2,15 +2,12 @@
 
 [Unit]
 Description=Authselect Configuration Autodiscovery
-#Requires=snmpd.service
-#PartOf=snmpd.service
-#ReloadPropagatedFrom=snmpd.service
 Before=nss-user-lookup.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash /usr/libexec/device-authselect-autodiscovery
-ExecReload=/bin/bash /usr/libexec/device-authselect-autodiscovery
+ExecStart=/bin/bash /usr/libexec/device-autodiscovery/authselect
+ExecReload=/bin/bash /usr/libexec/device-autodiscovery/authselect
 RemainAfterExit=on
 
 [Install]
