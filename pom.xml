@@ -8,7 +8,7 @@
 
   <artifactId>device-authselect</artifactId>
   <groupId>zone.device.platform</groupId>
-  <version>0.9.6</version>
+  <version>0.9.7-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>device authselect package</name>
   <description>Packaging for the authselect appliance</description>
@@ -20,9 +20,9 @@
   </organization>
 
   <scm>
-    <connection>scm:svn:https://github.com/device-zone/device-authselect/tags/device-authselect-0.9.6</connection>
-    <developerConnection>scm:svn:https://github.com/device-zone/device-authselect/tags/device-authselect-0.9.6</developerConnection>
-    <url>https://github.com/device-zone/device-authselect/tags/device-authselect-0.9.6</url>
+    <connection>scm:svn:https://github.com/device-zone/device-authselect/trunk</connection>
+    <developerConnection>scm:svn:https://github.com/device-zone/device-authselect/trunk</developerConnection>
+    <url>https://github.com/device-zone/device-authselect/trunk</url>
   </scm>
 
   <modules>
