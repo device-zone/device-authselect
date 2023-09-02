@@ -1,0 +1,18 @@
+#!/bin/sh
+  
+set -e
+umask 0002
+
+OPTIONS="--show suffix --show-table suffix,sudo-search-base --relation-base /etc/device/services/ldap/suffix --relation-name name --relation-suffix .txt --relation suffix --distinguished-name sudo-search-base"
+
+if [ "$1" == "--" ]; then
+
+  /usr/libexec/device-set ${OPTIONS} "$@"
+
+elif [ "$1" == "-c" ]; then
+
+  /usr/libexec/device-set ${OPTIONS} "$@"
+
+fi
+
+

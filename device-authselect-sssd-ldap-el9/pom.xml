@@ -146,6 +146,9 @@
                 <source>
                   <location>target/classes/usr/libexec/device/system/auth/sssd/ldap/set</location>
                 </source>
+                <source>
+                  <location>target/classes/usr/libexec/device/system/auth/sssd/ldap/show</location>
+                </source>
               </sources>
             </mapping>
           </mappings>

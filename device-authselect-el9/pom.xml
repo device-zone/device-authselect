@@ -160,6 +160,9 @@
                 <source>
                   <location>target/classes/usr/libexec/device/system/auth/set</location>
                 </source>
+                <source>
+                  <location>target/classes/usr/libexec/device/system/auth/show</location>
+                </source>
               </sources>
             </mapping>
           </mappings>

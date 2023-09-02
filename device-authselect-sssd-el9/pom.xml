@@ -127,6 +127,9 @@
                 <source>
                   <location>target/classes/usr/libexec/device/system/auth/sssd/set</location>
                 </source>
+                <source>
+                  <location>target/classes/usr/libexec/device/system/auth/sssd/show</location>
+                </source>
               </sources>
             </mapping>
           </mappings>

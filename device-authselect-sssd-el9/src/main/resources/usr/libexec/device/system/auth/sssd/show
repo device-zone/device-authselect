@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+umask 0002
+
+OPTIONS="--show - --polar with-faillock --polar with-mkhomedir --polar with-smartcard --polar with-smartcard-lock-on-removal --polar with-smartcard-required --polar with-fingerprint --polar with-pam-u2f --polar with-pam-u2f-2fa --polar without-pam-u2f-nouserok --polar with-sudo"
+
+if [ "$1" == "--" ]; then
+
+  /usr/libexec/device-set ${OPTIONS} "$@"
+
+elif [ "$1" == "-c" ]; then
+
+  /usr/libexec/device-set ${OPTIONS} "$@"
+
+fi
+
