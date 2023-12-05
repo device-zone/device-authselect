@@ -20,8 +20,8 @@
   </organization>
 
   <scm>
-    <connection>scm:svn:https://github.com/device-zone/device-authselect/trunk</connection>
-    <developerConnection>scm:svn:https://github.com/device-zone/device-authselect/trunk</developerConnection>
+    <connection>scm:git:https://github.com/device-zone/device-authselect.git</connection>
+    <developerConnection>scm:git:https://github.com/device-zone/device-authselect.git</developerConnection>
     <url>https://github.com/device-zone/device-authselect/trunk</url>
   </scm>
 
