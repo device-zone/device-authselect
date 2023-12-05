@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#
+# Sshd Autodiscovery - SSSD
+# =========================
+#
+# This script autogenerates the sssd extension for sshd.
+
+set -e
+umask 0007
+
+
+#
+# Select the sssd profile
+# -----------------------
+#
+# If the profile is sssd, update sshd.
+
+if [ -L "/etc/device/system/auth/profile" ]; then
+
+  profile=$(basename $(realpath "/etc/device/system/auth/profile"))
+
+  if [ "${profile}" != "sssd" ]; then
+
+    logger -t "${0}" "Notice: Removing sss_ssh_authorizedkeys from sshd service..."
+
+    /usr/bin/augtool --load-file=/etc/ssh/sshd_config <<-EOF | /usr/bin/logger -t "${0}"
+rm /files/etc/ssh/sshd_config/AuthorizedKeysCommand
+rm /files/etc/ssh/sshd_config/AuthorizedKeysCommandUser
+save
+EOF
+
+  else
+
+    logger -t "${0}" "Notice: Adding sss_ssh_authorizedkeys to sshd service..."
+
+    /usr/bin/augtool --load-file=/etc/ssh/sshd_config <<-EOF | /usr/bin/logger -t "${0}"
+set /files/etc/ssh/sshd_config/AuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys
+set /files/etc/ssh/sshd_config/AuthorizedKeysCommandUser root
+save
+EOF
+
+  fi
+
+fi
+
+

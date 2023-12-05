@@ -72,24 +72,9 @@ if [ -f "/etc/device/system/auth/with-sudo.bin" ]; then
   option+=" with-sudo"
 fi
 
-/usr/bin/authselect select sssd ${option} --force
+/usr/bin/authselect select sssd ${option} --force | /usr/bin/logger -t "${0}"
 
 logger -t authselect-autodiscovery "authselect select sssd ${option}"
-
-
-#
-# Make sure ssh reads keys from sss
-# ---------------------------------
-
-logger -t "${0}" "Notice: Adding sss_ssh_authorizedkeys to sshd service..."
-
-augtool --load-file=/etc/ssh/sshd_config <<-EOF | /usr/bin/logger -t "{0}"
-set /files/etc/ssh/sshd_config/AuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys
-set /files/etc/ssh/sshd_config/AuthorizedKeysCommandUser root
-save
-EOF
-
-systemctl try-reload-or-restart sshd
 
 
 #

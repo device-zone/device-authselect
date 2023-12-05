@@ -104,6 +104,19 @@
               </sources>
             </mapping>
             <mapping>
+              <directory>/usr/libexec/device-autodiscovery/sshd.d</directory>
+              <directoryIncluded>false</directoryIncluded>
+              <filemode>755</filemode>
+              <username>root</username>
+              <groupname>root</groupname>
+              <sources>
+                <source>
+                  <location>target/classes/usr/libexec/device-sshd-autodiscovery-sssd</location>
+                  <destination>40-sssd</destination>
+                </source>
+              </sources>
+            </mapping>
+            <mapping>
               <directory>/etc/device/system/auth/sssd</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>2775</filemode>
@@ -135,6 +148,7 @@
           </mappings>
           <requires>
             <require>device-authselect</require>
+            <require>device-sshd</require>
             <require>/usr/bin/augtool</require>
           </requires>
         </configuration>

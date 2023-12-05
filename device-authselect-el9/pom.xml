@@ -124,19 +124,6 @@
               <groupname>root</groupname>
             </mapping> 
             <mapping>
-              <directory>/usr/lib/systemd/system</directory>
-              <directoryIncluded>false</directoryIncluded>
-              <filemode>644</filemode>
-              <username>root</username>
-              <groupname>root</groupname>
-              <sources>
-                <source>
-                  <location>target/classes/usr/lib/systemd/system/authselect-autodiscovery.service</location>
-                  <destination>authselect-autodiscovery.service</destination>
-                </source>
-              </sources>
-            </mapping>
-            <mapping>
               <directory>/etc/device/system/auth</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>2775</filemode>

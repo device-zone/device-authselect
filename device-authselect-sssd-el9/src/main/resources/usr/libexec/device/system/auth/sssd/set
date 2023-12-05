@@ -3,16 +3,18 @@
 set -e
 umask 0002
 
+OPTIONS="--polar with-faillock --polar with-mkhomedir --polar with-smartcard --polar with-smartcard-lock-on-removal --polar with-smartcard-required --polar with-fingerprint --polar with-pam-u2f --polar with-pam-u2f-2fa --polar without-pam-u2f-nouserok --polar with-sudo"
+
 if [ "$1" == "--" ]; then
 
-  /usr/libexec/device-set --polar with-faillock --polar with-mkhomedir --polar with-smartcard --polar with-smartcard-lock-on-removal --polar with-smartcard-required --polar with-fingerprint --polar with-pam-u2f --polar with-pam-u2f-2fa --polar without-pam-u2f-nouserok --polar with-sudo "$@"
+  /usr/libexec/device-set ${OPTIONS} "$@"
 
   /usr/bin/sudo /usr/bin/systemctl try-reload-or-restart authselect-autodiscovery.service
   /usr/bin/sudo /usr/bin/systemctl try-reload-or-restart sssd.service
 
 elif [ "$1" == "-c" ]; then
 
-  /usr/libexec/device-set --polar with-faillock --polar with-mkhomedir --polar with-smartcard --polar with-smartcard-lock-on-removal --polar with-smartcard-required --polar with-fingerprint --polar with-pam-u2f --polar with-pam-u2f-2fa --polar without-pam-u2f-nouserok --polar with-sudo "$@"
+  /usr/libexec/device-set ${OPTIONS} "$@"
 
 fi
 
