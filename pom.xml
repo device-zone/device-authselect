@@ -30,6 +30,7 @@
     <module>device-authselect-el9</module>
     <module>device-authselect-sssd-el9</module>
     <module>device-authselect-sssd-ldap-el9</module>
+    <module>device-authselect-sssd-session-el9</module>
   </modules>
 
   <build>
