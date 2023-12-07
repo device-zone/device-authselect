@@ -144,6 +144,13 @@
                 </source>
               </sources>
             </mapping>
+            <mapping>
+              <directory>/var/log/tlog</directory>
+              <directoryIncluded>true</directoryIncluded>
+              <filemode>0750</filemode>
+              <username>tlog</username>
+              <groupname>tlog</groupname>
+            </mapping>
           </mappings>
           <requires>
             <require>device-authselect-sssd</require>
