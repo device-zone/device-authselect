@@ -31,7 +31,7 @@ if [ -L "/etc/device/system/auth/profile" ]; then
       notice=$(cat /etc/device/system/auth/sssd/session/notice.txt)
       notice=$(echo -e "\n${notice}\n" | jq --raw-input --raw-output --ascii-output --slurp .)
     else
-      notice=""
+      notice="\"\""
     fi
 
     if test -s "/etc/device/system/auth/sssd/session/scope.txt"; then
