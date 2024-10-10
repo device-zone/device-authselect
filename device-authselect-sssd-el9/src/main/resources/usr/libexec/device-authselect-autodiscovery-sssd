@@ -54,13 +54,11 @@ if [ -f "$line/with-smartcard.bin" ]; then
   option+=" with-smartcard"
   smartcard="true"
 fi
-if [ -f "$line/with-smartcard-lock-on-removal.bin" ]; then
+if [ -f "$line/smartcard/lock-on-removal.bin" ]; then
   option+=" with-smartcard-lock-on-removal"
-  smartcard="true"
 fi
-if [ -f "$line/with-smartcard-required.bin" ]; then
+if [ -f "$line/smartcard/required.bin" ]; then
   option+=" with-smartcard-required"
-  smartcard="true"
 fi
 if [ -f "$line/with-fingerprint.bin" ]; then
   option+=" with-fingerprint"
@@ -78,14 +76,14 @@ if [ -f "$line/with-sudo.bin" ]; then
   option+=" with-sudo"
 fi
 
-if test "$line/ca-certificate.crt"; then
+if test "$line/smartcard/ca-certificate.crt"; then
 
   rm -f "/run/sssd_auth_ca_db.yaml"
   rm -f "/run/sssd_auth_ca_db.pem"
 
   logger -t authselect-autodiscovery "requesting sssd smartcard ca-certificate..."
 
-  redwax-tool --trust-pem-in="$line/ca-certificate.crt" \
+  redwax-tool --trust-pem-in="$line/smartcard/ca-certificate.crt" \
               --no-cert-out --no-chain-out --root-out \
               --pem-out=/run/sssd_auth_ca_db.pem \
               --metadata-out="/run/sssd_auth_ca_db.yaml"

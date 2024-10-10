@@ -145,12 +145,42 @@
                 </source>
               </sources>
             </mapping>
+            <mapping>
+              <directory>/etc/device/system/auth/sssd/smartcard</directory>
+              <directoryIncluded>true</directoryIncluded>
+              <filemode>2775</filemode>
+              <username>root</username>
+              <groupname>device</groupname>
+            </mapping>
+            <mapping>
+              <directory>/usr/libexec/device/system/auth/sssd/smartcard</directory>
+              <directoryIncluded>true</directoryIncluded>
+              <filemode>755</filemode>
+              <username>root</username>
+              <groupname>root</groupname>
+            </mapping>
+            <mapping>
+              <directory>/usr/libexec/device/system/auth/sssd/smartcard</directory>
+              <directoryIncluded>false</directoryIncluded>
+              <filemode>755</filemode>
+              <username>root</username>
+              <groupname>root</groupname>
+              <sources>
+                <source>
+                  <location>target/classes/usr/libexec/device/system/auth/sssd/smartcard/set</location>
+                </source>
+                <source>
+                  <location>target/classes/usr/libexec/device/system/auth/sssd/smartcard/show</location>
+                </source>
+              </sources>
+            </mapping>
           </mappings>
           <requires>
             <require>device-authselect</require>
             <require>device-sshd</require>
             <require>oddjob-mkhomedir</require>
             <require>/usr/bin/augtool</require>
+            <require>/usr/bin/redwax-tool</require>
           </requires>
         </configuration>
       </plugin>
