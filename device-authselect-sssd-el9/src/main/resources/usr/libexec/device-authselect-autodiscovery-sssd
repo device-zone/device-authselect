@@ -41,34 +41,34 @@ fi
 
 option=""
 
-if [ -f "/etc/device/system/auth/with-faillock.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/with-faillock.bin" ]; then
   option+=" with-faillock"
 fi
-if [ -f "/etc/device/system/auth/with-mkhomedir.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/with-mkhomedir.bin" ]; then
   option+=" with-mkhomedir"
 fi
-if [ -f "/etc/device/system/auth/with-smartcard.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/with-smartcard.bin" ]; then
   option+=" with-smartcard"
 fi
-if [ -f "/etc/device/system/auth/with-smartcard-lock-on-removal.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/with-smartcard-lock-on-removal.bin" ]; then
   option+=" with-smartcard-lock-on-removal"
 fi
-if [ -f "/etc/device/system/auth/with-smartcard-required.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/with-smartcard-required.bin" ]; then
   option+=" with-smartcard-required"
 fi
-if [ -f "/etc/device/system/auth/with-fingerprint.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/with-fingerprint.bin" ]; then
   option+=" with-fingerprint"
 fi
-if [ -f "/etc/device/system/auth/with-pam-u2f.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/with-pam-u2f.bin" ]; then
   option+=" with-pam-u2f"
 fi
-if [ -f "/etc/device/system/auth/with-pam-u2f-2fa.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/with-pam-u2f-2fa.bin" ]; then
   option+=" with-pam-u2f-2fa"
 fi
-if [ -f "/etc/device/system/auth/without-pam-u2f-nouserok.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/without-pam-u2f-nouserok.bin" ]; then
   option+=" without-pam-u2f-nouserok"
 fi
-if [ -f "/etc/device/system/auth/with-sudo.bin" ]; then
+if [ -f "/etc/device/system/auth/sssd/with-sudo.bin" ]; then
   option+=" with-sudo"
 fi
 
