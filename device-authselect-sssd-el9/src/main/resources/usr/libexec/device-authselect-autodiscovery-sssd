@@ -39,37 +39,59 @@ fi
 # Build sssd options
 # ------------------
 
-option=""
+line="/etc/device/system/auth/sssd"
 
-if [ -f "/etc/device/system/auth/sssd/with-faillock.bin" ]; then
+option=""
+smartcard=""
+
+if [ -f "$line/with-faillock.bin" ]; then
   option+=" with-faillock"
 fi
-if [ -f "/etc/device/system/auth/sssd/with-mkhomedir.bin" ]; then
+if [ -f "$line/with-mkhomedir.bin" ]; then
   option+=" with-mkhomedir"
 fi
-if [ -f "/etc/device/system/auth/sssd/with-smartcard.bin" ]; then
+if [ -f "$line/with-smartcard.bin" ]; then
   option+=" with-smartcard"
+  smartcard="true"
 fi
-if [ -f "/etc/device/system/auth/sssd/with-smartcard-lock-on-removal.bin" ]; then
+if [ -f "$line/with-smartcard-lock-on-removal.bin" ]; then
   option+=" with-smartcard-lock-on-removal"
+  smartcard="true"
 fi
-if [ -f "/etc/device/system/auth/sssd/with-smartcard-required.bin" ]; then
+if [ -f "$line/with-smartcard-required.bin" ]; then
   option+=" with-smartcard-required"
+  smartcard="true"
 fi
-if [ -f "/etc/device/system/auth/sssd/with-fingerprint.bin" ]; then
+if [ -f "$line/with-fingerprint.bin" ]; then
   option+=" with-fingerprint"
 fi
-if [ -f "/etc/device/system/auth/sssd/with-pam-u2f.bin" ]; then
+if [ -f "$line/with-pam-u2f.bin" ]; then
   option+=" with-pam-u2f"
 fi
-if [ -f "/etc/device/system/auth/sssd/with-pam-u2f-2fa.bin" ]; then
+if [ -f "$line/with-pam-u2f-2fa.bin" ]; then
   option+=" with-pam-u2f-2fa"
 fi
-if [ -f "/etc/device/system/auth/sssd/without-pam-u2f-nouserok.bin" ]; then
+if [ -f "$line/without-pam-u2f-nouserok.bin" ]; then
   option+=" without-pam-u2f-nouserok"
 fi
-if [ -f "/etc/device/system/auth/sssd/with-sudo.bin" ]; then
+if [ -f "$line/with-sudo.bin" ]; then
   option+=" with-sudo"
+fi
+
+if test "$line/ca-certificate.crt"; then
+
+  rm -f "/run/sssd_auth_ca_db.yaml"
+  rm -f "/run/sssd_auth_ca_db.pem"
+
+  logger -t authselect-autodiscovery "requesting sssd smartcard ca-certificate..."
+
+  redwax-tool --trust-pem-in="$line/ca-certificate.crt" \
+              --no-cert-out --no-chain-out --root-out \
+              --pem-out=/run/sssd_auth_ca_db.pem \
+              --metadata-out="/run/sssd_auth_ca_db.yaml"
+
+  logger -t authselect-autodiscovery "requested sssd smartcard ca-certificate."
+
 fi
 
 /usr/bin/authselect select sssd ${option} --force | /usr/bin/logger -t "${0}"
@@ -103,10 +125,27 @@ cat >> sssd.conf <<- EOF
 #
 EOF
 
-
 if [ -f sssd-domains.conf ]; then
   domains="$(head -n 1 sssd-domains.conf)"
-  cat >> sssd.conf <<- EOF
+
+  if [ -n "$smartcard" -a -f "/run/sssd_auth_ca_db.pem" ]; then
+    cat >> sssd.conf <<- EOF
+[sssd]
+services = nss, pam, ssh, sudo, autofs
+domains = ${domains}
+
+[nss]
+homedir_substring = /home
+
+[pam]
+pam_cert_auth = True
+pam_cert_db_path = /run/sssd_auth_ca_db.pem
+
+[sudo]
+
+EOF
+  else
+    cat >> sssd.conf <<- EOF
 [sssd]
 services = nss, pam, ssh, sudo, autofs
 domains = ${domains}
@@ -119,6 +158,7 @@ homedir_substring = /home
 [sudo]
 
 EOF
+  fi
 else
   cat >> sssd.conf <<- EOF
 [sssd]

@@ -3,7 +3,7 @@
 set -e
 umask 0002
 
-OPTIONS="--show - --polar with-faillock --polar with-mkhomedir --polar with-smartcard --polar with-smartcard-lock-on-removal --polar with-smartcard-required --polar with-fingerprint --polar with-pam-u2f --polar with-pam-u2f-2fa --polar without-pam-u2f-nouserok --polar with-sudo"
+OPTIONS="--show - --polar with-faillock --polar with-mkhomedir --polar with-smartcard --polar with-smartcard-lock-on-removal --polar with-smartcard-required --polar with-fingerprint --polar with-pam-u2f --polar with-pam-u2f-2fa --polar without-pam-u2f-nouserok --polar with-sudo --symlink-base /etc/pki/tls/certs --symlink-suffix .crt --symlink ca-certificate"
 
 if [ "$1" == "--" ]; then
 
