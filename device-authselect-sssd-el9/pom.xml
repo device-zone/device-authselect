@@ -149,6 +149,7 @@
           <requires>
             <require>device-authselect</require>
             <require>device-sshd</require>
+            <require>oddjob-mkhomedir</require>
             <require>/usr/bin/augtool</require>
           </requires>
         </configuration>

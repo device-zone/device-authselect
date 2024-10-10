@@ -164,6 +164,7 @@
           <requires>
             <require>authselect</require>
             <require>device</require>
+            <require>oddjob</require>
           </requires>
         </configuration>
       </plugin>
