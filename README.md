@@ -59,9 +59,21 @@ Options include the following:
 - with-pam-u2f=[yes|no]
 - with-pam-u2f-2fa=[yes|no]
 - with-smartcard=[yes|no]
-- with-smartcard-lock-on-removal=[yes|no]
-- with-smartcard-required=[yes|no]
 - with-sudo=[yes|no]
+
+## set sssd smartcard parameters
+
+To set sssd smartcard specific parameters, run the following.
+
+```
+[root@server ~]# device system auth sssd smartcard set lock-on-removal=yes
+```
+
+Options include the following:
+
+- ca-certificate=[cert]
+- lock-on-removal=[yes|no]
+- required=[yes|no]
 
 
 # device-authselect-sssd-ldap
