@@ -115,6 +115,7 @@ ${sudo_provider}
 ldap_uri =${uris}
 ldap_search_base = ${suffix}
 ldap_sasl_mech = ${sasl_mech}
+ldap_user_certificate = userCertificate
 ldap_user_ssh_public_key = nsSshPublicKey
 ${ldap_tls_cacert}
 ${ldap_tls_cert}
@@ -128,6 +129,8 @@ ldap_autofs_entry_key = cn
 ldap_autofs_entry_value = automountInformation
 
 cache_credentials = True
+
+local_auth_policy = enable:smartcard
 
 EOF
 
