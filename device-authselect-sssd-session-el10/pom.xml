@@ -4,7 +4,7 @@
   <parent>
     <artifactId>device-authselect</artifactId>
     <groupId>zone.device.platform</groupId>
-    <version>0.9.17-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
   </parent>
 
   <properties>
@@ -16,13 +16,13 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
-  <artifactId>device-authselect-sssd</artifactId>
-  <groupId>zone.device.platform.el9</groupId>
-  <version>0.9.17-SNAPSHOT</version>
+  <artifactId>device-authselect-sssd-session</artifactId>
+  <groupId>zone.device.platform.el10</groupId>
+  <version>2.0.0-SNAPSHOT</version>
   <packaging>rpm</packaging>
-  <name>device authselect sssd extension for el9</name>
-  <description>Packaging for the authselect sssd extension for ${release.distribution}</description>
-  <inceptionYear>2022</inceptionYear>
+  <name>device authselect sssd session extension for el9</name>
+  <description>Packaging for the authselect sssd session extension for ${release.distribution}</description>
+  <inceptionYear>2023</inceptionYear>
 
   <build>
     <resources>
@@ -98,89 +98,63 @@
               <groupname>root</groupname>
               <sources>
                 <source>
-                  <location>target/classes/usr/libexec/device-authselect-autodiscovery-sssd</location>
-                  <destination>50-sssd</destination>
+                  <location>target/classes/usr/libexec/device-authselect-autodiscovery-sssd-session</location>
+                  <destination>40-sssd-session</destination>
                 </source>
               </sources>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device-autodiscovery/sshd.d</directory>
-              <directoryIncluded>false</directoryIncluded>
-              <filemode>755</filemode>
-              <username>root</username>
-              <groupname>root</groupname>
-              <sources>
-                <source>
-                  <location>target/classes/usr/libexec/device-sshd-autodiscovery-sssd</location>
-                  <destination>40-sssd</destination>
-                </source>
-              </sources>
-            </mapping>
-            <mapping>
-              <directory>/etc/device/system/auth/sssd</directory>
+              <directory>/etc/device/system/auth/sssd/session</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>2775</filemode>
               <username>root</username>
               <groupname>device</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd</directory>
+              <directory>/usr/libexec/device/system/auth/sssd/session</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd</directory>
+              <directory>/usr/libexec/device/system/auth/sssd/session</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
               <sources>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/set</location>
+                  <location>target/classes/usr/libexec/device/system/auth/sssd/session/set</location>
                 </source>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/show</location>
+                  <location>target/classes/usr/libexec/device/system/auth/sssd/session/show</location>
                 </source>
               </sources>
             </mapping>
             <mapping>
-              <directory>/etc/device/system/auth/sssd/smartcard</directory>
-              <directoryIncluded>true</directoryIncluded>
-              <filemode>2775</filemode>
-              <username>root</username>
-              <groupname>device</groupname>
-            </mapping>
-            <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd/smartcard</directory>
-              <directoryIncluded>true</directoryIncluded>
-              <filemode>755</filemode>
-              <username>root</username>
-              <groupname>root</groupname>
-            </mapping>
-            <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd/smartcard</directory>
+              <directory>/usr/libexec/device/system/auth/sssd/session</directory>
               <directoryIncluded>false</directoryIncluded>
-              <filemode>755</filemode>
+              <filemode>644</filemode>
               <username>root</username>
               <groupname>root</groupname>
               <sources>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/smartcard/set</location>
-                </source>
-                <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/smartcard/show</location>
+                  <location>target/classes/usr/libexec/device/system/auth/sssd/session/scope.txt</location>
                 </source>
               </sources>
+            </mapping>
+            <mapping>
+              <directory>/var/log/tlog</directory>
+              <directoryIncluded>true</directoryIncluded>
+              <filemode>0750</filemode>
+              <username>tlog</username>
+              <groupname>tlog</groupname>
             </mapping>
           </mappings>
           <requires>
-            <require>device-authselect</require>
-            <require>device-sshd</require>
-            <require>oddjob-mkhomedir</require>
-            <require>/usr/bin/augtool</require>
-            <require>/usr/bin/redwax-tool</require>
+            <require>device-authselect-sssd</require>
+            <require>tlog</require>
           </requires>
         </configuration>
       </plugin>
