@@ -76,7 +76,7 @@ if [ -f "$line/with-sudo.bin" ]; then
   option+=" with-sudo"
 fi
 
-if test "$line/smartcard/ca-certificate.crt"; then
+if test -f "$line/smartcard/ca-certificate.crt"; then
 
   rm -f "/run/sssd_auth_ca_db.yaml"
   rm -f "/run/sssd_auth_ca_db.pem"
