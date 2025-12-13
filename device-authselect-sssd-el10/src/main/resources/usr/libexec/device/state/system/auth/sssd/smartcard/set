@@ -3,7 +3,10 @@
 set -e
 umask 0002
 
-OPTIONS="--polar lock-on-removal --polar required --symlink-base /etc/pki/tls/certs --symlink-suffix .crt --symlink ca-certificate"
+OPTIONS="--polar lock-on-removal \
+         --polar required \
+         --symlink-base /etc/pki/tls/certs --symlink-suffix .crt --symlink ca-certificate \
+         --lock /etc/device/system/auth/"
 
 if [ "$1" == "--" ]; then
 

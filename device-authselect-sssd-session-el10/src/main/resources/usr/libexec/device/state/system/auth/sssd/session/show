@@ -5,7 +5,8 @@ umask 0002
 
 OPTIONS="--show - \
          --select-base /usr/libexec/device/state/system/auth/sssd/session/scope.txt --select scope \
-         --text notice"
+         --text notice \
+         --lock /etc/device/system/auth/"
 
 if [ "$1" == "--" ]; then
 

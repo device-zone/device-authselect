@@ -3,7 +3,11 @@
 set -e
 umask 0002
 
-OPTIONS="--show suffix --show-table suffix,sudo-search-base --relation-base /etc/device/services/ldap/suffix --relation-name name --relation-suffix .txt --relation suffix --distinguished-name sudo-search-base"
+OPTIONS="--show suffix \
+         --show-table suffix,sudo-search-base \
+         --relation-base /etc/device/services/ldap/suffix --relation-name name --relation-suffix .txt --relation suffix \
+         --distinguished-name sudo-search-base \
+         --lock /etc/device/system/auth/"
 
 if [ "$1" == "--" ]; then
 

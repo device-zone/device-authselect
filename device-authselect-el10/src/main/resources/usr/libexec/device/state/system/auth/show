@@ -3,7 +3,9 @@
 set -e
 umask 0002
 
-OPTIONS="--show - --symlink-base=/usr/share/authselect/default --symlink-base=/usr/share/authselect/vendor --symlink-base=/etc/authselect/custom --symlink=profile"
+OPTIONS="--show - \
+         --symlink-base=/usr/share/authselect/default --symlink-base=/usr/share/authselect/vendor --symlink-base=/etc/authselect/custom --symlink=profile \
+         --lock /etc/device/system/auth/"
 
 if [ "$1" == "--" ]; then
 
