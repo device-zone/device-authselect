@@ -8,7 +8,7 @@
   </parent>
 
   <properties>
-    <release.distribution>el9</release.distribution>
+    <release.distribution>el10</release.distribution>
     <release.instance>device</release.instance>
     <jdk.version>1.8</jdk.version>
     <release.cacert>/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem</release.cacert>
@@ -20,7 +20,7 @@
   <groupId>zone.device.platform.el10</groupId>
   <version>2.0.0-SNAPSHOT</version>
   <packaging>rpm</packaging>
-  <name>device authselect sssd session extension for el9</name>
+  <name>device authselect sssd session extension for el10</name>
   <description>Packaging for the authselect sssd session extension for ${release.distribution}</description>
   <inceptionYear>2023</inceptionYear>
 
