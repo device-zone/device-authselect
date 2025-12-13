@@ -44,35 +44,35 @@ line="/etc/device/system/auth/sssd"
 option=""
 smartcard=""
 
-if [ -f "$line/with-faillock.bin" ]; then
+if [ -f "$line/with-faillock.polar" ]; then
   option+=" with-faillock"
 fi
-if [ -f "$line/with-mkhomedir.bin" ]; then
+if [ -f "$line/with-mkhomedir.polar" ]; then
   option+=" with-mkhomedir"
 fi
-if [ -f "$line/with-smartcard.bin" ]; then
+if [ -f "$line/with-smartcard.polar" ]; then
   option+=" with-smartcard"
   smartcard="true"
 fi
-if [ -f "$line/smartcard/lock-on-removal.bin" ]; then
+if [ -f "$line/smartcard/lock-on-removal.polar" ]; then
   option+=" with-smartcard-lock-on-removal"
 fi
-if [ -f "$line/smartcard/required.bin" ]; then
+if [ -f "$line/smartcard/required.polar" ]; then
   option+=" with-smartcard-required"
 fi
-if [ -f "$line/with-fingerprint.bin" ]; then
+if [ -f "$line/with-fingerprint.polar" ]; then
   option+=" with-fingerprint"
 fi
-if [ -f "$line/with-pam-u2f.bin" ]; then
+if [ -f "$line/with-pam-u2f.polar" ]; then
   option+=" with-pam-u2f"
 fi
-if [ -f "$line/with-pam-u2f-2fa.bin" ]; then
+if [ -f "$line/with-pam-u2f-2fa.polar" ]; then
   option+=" with-pam-u2f-2fa"
 fi
-if [ -f "$line/without-pam-u2f-nouserok.bin" ]; then
+if [ -f "$line/without-pam-u2f-nouserok.polar" ]; then
   option+=" without-pam-u2f-nouserok"
 fi
-if [ -f "$line/with-sudo.bin" ]; then
+if [ -f "$line/with-sudo.polar" ]; then
   option+=" with-sudo"
 fi
 
