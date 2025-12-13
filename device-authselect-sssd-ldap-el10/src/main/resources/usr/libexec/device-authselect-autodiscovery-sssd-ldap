@@ -132,6 +132,9 @@ cache_credentials = True
 
 local_auth_policy = enable:smartcard
 
+# without this, sssd tries to use starttls over unix domain sockets
+ldap_id_use_start_tls = False
+
 EOF
 
     if [ -f /tmp/sssd-domains.conf ]; then
