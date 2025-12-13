@@ -91,7 +91,7 @@
           </defineStatements>
           <mappings>
             <mapping>
-              <directory>/usr/libexec/device-autodiscovery/authselect.d</directory>
+              <directory>/usr/libexec/device/autodiscovery/authselect.d</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
@@ -111,36 +111,36 @@
               <groupname>device</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd/session</directory>
+              <directory>/usr/libexec/device/state/system/auth/sssd/session</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd/session</directory>
+              <directory>/usr/libexec/device/state/system/auth/sssd/session</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
               <sources>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/session/set</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/session/set</location>
                 </source>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/session/show</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/session/show</location>
                 </source>
               </sources>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd/session</directory>
+              <directory>/usr/libexec/device/state/system/auth/sssd/session</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>644</filemode>
               <username>root</username>
               <groupname>root</groupname>
               <sources>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/session/scope.txt</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/session/scope.txt</location>
                 </source>
               </sources>
             </mapping>

@@ -59,7 +59,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>3.4.1</version>
+        <version>3.4.0</version>
         <configuration>
           <escapeString>\</escapeString>
         </configuration>
@@ -104,7 +104,7 @@
               </sources>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device-autodiscovery</directory>
+              <directory>/usr/libexec/device/autodiscovery</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
@@ -117,10 +117,10 @@
               </sources>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device-autodiscovery/authselect.d</directory>
+              <directory>/usr/libexec/device/autodiscovery/authselect.d</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>755</filemode>
-              <username>root</username>       
+              <username>root</username>
               <groupname>root</groupname>
             </mapping> 
             <mapping>
@@ -131,24 +131,24 @@
               <groupname>device</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth</directory>
+              <directory>/usr/libexec/device/state/system/auth</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth</directory>
+              <directory>/usr/libexec/device/state/system/auth</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
               <sources>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/set</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/set</location>
                 </source>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/show</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/show</location>
                 </source>
               </sources>
             </mapping>

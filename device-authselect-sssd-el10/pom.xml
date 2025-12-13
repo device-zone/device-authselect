@@ -91,7 +91,7 @@
           </defineStatements>
           <mappings>
             <mapping>
-              <directory>/usr/libexec/device-autodiscovery/authselect.d</directory>
+              <directory>/usr/libexec/device/autodiscovery/authselect.d</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
@@ -104,7 +104,7 @@
               </sources>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device-autodiscovery/sshd.d</directory>
+              <directory>/usr/libexec/device/autodiscovery/sshd.d</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
@@ -124,24 +124,24 @@
               <groupname>device</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd</directory>
+              <directory>/usr/libexec/device/state/system/auth/sssd</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd</directory>
+              <directory>/usr/libexec/device/state/system/auth/sssd</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
               <sources>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/set</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/set</location>
                 </source>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/show</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/show</location>
                 </source>
               </sources>
             </mapping>
@@ -153,24 +153,24 @@
               <groupname>device</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd/smartcard</directory>
+              <directory>/usr/libexec/device/state/system/auth/sssd/smartcard</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd/smartcard</directory>
+              <directory>/usr/libexec/device/state/system/auth/sssd/smartcard</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
               <sources>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/smartcard/set</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/smartcard/set</location>
                 </source>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/smartcard/show</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/smartcard/show</location>
                 </source>
               </sources>
             </mapping>

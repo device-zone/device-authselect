@@ -3,7 +3,9 @@
 set -e
 umask 0002
 
-OPTIONS="--show - --select-base /usr/libexec/device/system/auth/sssd/session/scope.txt --select scope --text notice"
+OPTIONS="--show - \
+         --select-base /usr/libexec/device/state/system/auth/sssd/session/scope.txt --select scope \
+         --text notice"
 
 if [ "$1" == "--" ]; then
 

@@ -91,7 +91,7 @@
           </defineStatements>
           <mappings>
             <mapping>
-              <directory>/usr/libexec/device-autodiscovery/authselect.d</directory>
+              <directory>/usr/libexec/device/autodiscovery/authselect.d</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
@@ -104,7 +104,7 @@
               </sources>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device-postdiscovery/389ds.d</directory>
+              <directory>/usr/libexec/device/postdiscovery/389ds.d</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
@@ -124,30 +124,30 @@
               <groupname>device</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd/ldap</directory>
+              <directory>/usr/libexec/device/state/system/auth/sssd/ldap</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/system/auth/sssd/ldap</directory>
+              <directory>/usr/libexec/device/state/system/auth/sssd/ldap</directory>
               <directoryIncluded>false</directoryIncluded>
               <filemode>755</filemode>
               <username>root</username>
               <groupname>root</groupname>
               <sources>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/ldap/add</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/ldap/add</location>
                 </source>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/ldap/remove</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/ldap/remove</location>
                 </source>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/ldap/set</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/ldap/set</location>
                 </source>
                 <source>
-                  <location>target/classes/usr/libexec/device/system/auth/sssd/ldap/show</location>
+                  <location>target/classes/usr/libexec/device/state/system/auth/sssd/ldap/show</location>
                 </source>
               </sources>
             </mapping>
