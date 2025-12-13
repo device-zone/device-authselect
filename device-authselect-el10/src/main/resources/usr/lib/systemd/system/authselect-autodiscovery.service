@@ -6,8 +6,8 @@ Before=nss-user-lookup.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/sequence -s daemon.info -b /usr/libexec device/autodiscovery/authselect.d start %i
-ExecReload=/usr/bin/sequence -s daemon.info -b /usr/libexec device/autodiscovery/authselect.d reload %i
+ExecStart=/usr/bin/sequence -s daemon.info -b /usr/libexec device/autodiscovery/authselect.d start
+ExecReload=/usr/bin/sequence -s daemon.info -b /usr/libexec device/autodiscovery/authselect.d reload
 RemainAfterExit=on
 
 [Install]
