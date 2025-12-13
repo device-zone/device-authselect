@@ -104,19 +104,6 @@
               </sources>
             </mapping>
             <mapping>
-              <directory>/usr/libexec/device/autodiscovery</directory>
-              <directoryIncluded>false</directoryIncluded>
-              <filemode>755</filemode>
-              <username>root</username>
-              <groupname>root</groupname>
-              <sources>
-                <source>
-                  <location>target/classes/usr/libexec/device-authselect-autodiscovery</location>
-                  <destination>authselect</destination>
-                </source>
-              </sources>
-            </mapping>
-            <mapping>
               <directory>/usr/libexec/device/autodiscovery/authselect.d</directory>
               <directoryIncluded>true</directoryIncluded>
               <filemode>755</filemode>
@@ -165,6 +152,7 @@
             <require>authselect</require>
             <require>device</require>
             <require>oddjob</require>
+            <require>sequence</require>
           </requires>
         </configuration>
       </plugin>
