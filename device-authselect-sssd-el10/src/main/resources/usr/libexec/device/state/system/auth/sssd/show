@@ -7,11 +7,11 @@ OPTIONS="--show - --polar with-faillock --polar with-mkhomedir --polar with-smar
 
 if [ "$1" == "--" ]; then
 
-  /usr/libexec/device-set ${OPTIONS} "$@"
+  /usr/libexec/device-tool ${OPTIONS} "$@"
 
 elif [ "$1" == "-c" ]; then
 
-  /usr/libexec/device-set ${OPTIONS} "$@"
+  /usr/libexec/device-tool ${OPTIONS} "$@"
 
 fi
 

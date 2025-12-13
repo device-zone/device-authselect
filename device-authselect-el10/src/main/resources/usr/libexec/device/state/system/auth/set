@@ -7,14 +7,14 @@ OPTIONS="--symlink-base=/usr/share/authselect/default --symlink-base=/usr/share/
 
 if [ "$1" == "--" ]; then
 
-  /usr/libexec/device-set ${OPTIONS} "$@"
+  /usr/libexec/device-tool ${OPTIONS} "$@"
 
   /usr/bin/sudo /usr/bin/systemctl try-reload-or-restart authselect-autodiscovery.service
   /usr/bin/sudo /usr/bin/systemctl try-reload-or-restart sshd-autodiscovery.service
 
 elif [ "$1" == "-c" ]; then
 
-  /usr/libexec/device-set ${OPTIONS} "$@"
+  /usr/libexec/device-tool ${OPTIONS} "$@"
 
 fi
 
